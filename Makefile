@@ -6,11 +6,11 @@ VPATH=./src/
 
 EXEC=\
 	fibonacci \
-    linked_list \
-    max_profit \
-    merge_sort \
-    selection_sort \
-    permute_string
+	linked_list \
+	max_profit \
+	merge_sort \
+	selection_sort \
+	permute_string
 
 all: $(EXEC)
 
