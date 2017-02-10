@@ -1,19 +1,35 @@
 CC=gcc
 CFLAGS=-g -Wall -Wfatal-errors
-LDFLAGS=-pthread
+LDFLAGS=
 INC=-I./include
-VPATH=./src/
+VPATH=./src
 
-EXEC=\
-	fibonacci \
-	linked_list \
-	max_profit \
-	merge_sort \
-	selection_sort \
+ONEEXEC=\
+	fibonacci\
+	linked_list\
+	max_profit\
 	permute_string
 
-all: $(EXEC)
+MULTIEXEC=\
+	sorteval
+
+OBJS=\
+	utils.o\
+	sortalgs.o\
+
+DEPS=\
+	include/utils.h\
+	include/sortalgs.h\
+
+all: $(ONEEXEC) $(MULTIEXEC)
+
+$(MULTIEXEC): sorteval.c $(OBJS)
+	$(CC) $(CFLAGS) $(INC) $^ -o $@ $(LDFLAGS)
+
+%.o: %.c $(DEPS)
+	$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
 .PHONY: clean
+
 clean:
-	rm -rf $(EXEC) core.*
+	rm -rf *.o core.* $(ONEEXEC) $(MULTIEXEC)
