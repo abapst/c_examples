@@ -15,9 +15,9 @@ list *read_list(const char *filename)
     fscanf(fd,"%zu",&n);
 
     /* Allocate list */
-    list *v = create_list(n);
+    list *src = create_list(n);
     
-    float *step = v->data;
+    float *step = src->data;
 
     /* Read list into array */
     while(fscanf(fd,"%f",step) > 0){
@@ -25,49 +25,49 @@ list *read_list(const char *filename)
     }
 
     fclose(fd);
-    return v;
+    return src;
 }
 
-void swap(float *data, int i1, int i2)
+void swap(list *src, int i1, int i2)
 {
-    float tmp = data[i1];
-    data[i1] = data[i2];
-    data[i2] = tmp;
+    float tmp = src->data[i1];
+    src->data[i1] = src->data[i2];
+    src->data[i2] = tmp;
 }
 
-list *copy_list(list *src)
+int copy_list(list *src, list *dst)
 {
     size_t ii;
-    list *dst = create_list(src->n);
+    if (src->n != dst->n) return -1;
 
     for(ii = 0; ii < src->n; ii++) {
         dst->data[ii] = src->data[ii];
     }
 
-    return dst;
+    return 0;
 }
 
 list *create_list(size_t n)
 {
-    list *v = (list *)malloc(sizeof(list));
-    v->data = (float *)malloc(n*sizeof(float));
-    v->n = n;
+    list *src = (list *)malloc(sizeof(list));
+    src->data = (float *)malloc(n*sizeof(float));
+    src->n = n;
 
-    return v;
+    return src;
 }
 
-void delete_list(list *v)
+void delete_list(list *src)
 {
-    free(v->data);
-    free(v);
+    free(src->data);
+    free(src);
 }
 
-void print_list(list *v)
+void print_list(list *src)
 {
     size_t ii;
 
-    for (ii = 0; ii < v->n; ii++)
-        printf("%f\n",v->data[ii]);
+    for (ii = 0; ii < src->n; ii++)
+        printf("%f\n",src->data[ii]);
 }
 
 int compare_lists(list *src, list *dst)
@@ -79,4 +79,15 @@ int compare_lists(list *src, list *dst)
         if (src->data[ii] != dst->data[ii]) return -1;
     }   
     return 0;
+}
+
+/**************************************************
+ * Returns the time in ms since the epoch
+ **************************************************/
+double get_time_ms()
+{
+    struct timeval tv;
+    gettimeofday(&tv,NULL);
+
+    return (double)(tv.tv_sec) + (double)(tv.tv_usec/1E6);
 }
