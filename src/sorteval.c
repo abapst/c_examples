@@ -9,7 +9,7 @@
 #define BUFSIZE 256
 #define NLISTS 5
 
-#define TEST(p)    (1 ? "PASS" : "FAIL")
+#define TEST(p)    ( p==1 ? "PASS" : "FAIL" )
 
 int main()
 {
@@ -75,33 +75,33 @@ int main()
     fprintf(stderr,"+----------------------------------------------------+\n");
     fprintf(stderr,"|                    Test Results                    |\n");
     fprintf(stderr,"+---------------+------------------------------------+\n");
-    fprintf(stderr,"|   List length |  1E1   1E2   1E3   1E4   1E5       |\n");
+    fprintf(stderr,"|   List length | 1E1    1E2    1E3    1E4    1E5    |\n");
     fprintf(stderr,"+---------------+------------------------------------+\n");
-    fprintf(stderr,"|   Bubble sort | %s  %s  %s  %s  %s       |\n",\
+    fprintf(stderr,"|   Bubble sort | %-6s %-6s %-6s %-6s %-6s |\n",\
         TEST(correct[0][0]),\
         TEST(correct[0][1]),\
         TEST(correct[0][2]),\
         TEST(correct[0][3]),\
         TEST(correct[0][4]));
-    fprintf(stderr,"|Selection sort | %s  %s  %s  %s  %s       |\n",\
+    fprintf(stderr,"|Selection sort | %-6s %-6s %-6s %-6s %-6s |\n",\
         TEST(correct[1][0]),\
         TEST(correct[1][1]),\
         TEST(correct[1][2]),\
         TEST(correct[1][3]),\
         TEST(correct[1][4]));
-    fprintf(stderr,"|Insertion sort | %s  %s  %s  %s  %s       |\n",\
+    fprintf(stderr,"|Insertion sort | %-6s %-6s %-6s %-6s %-6s |\n",\
         TEST(correct[2][0]),\
         TEST(correct[2][1]),\
         TEST(correct[2][2]),\
         TEST(correct[2][3]),\
         TEST(correct[2][4]));
-    fprintf(stderr,"|     Quicksort | %s  %s  %s  %s  %s       |\n",\
+    fprintf(stderr,"|     Quicksort | %-6s %-6s %-6s %-6s %-6s |\n",\
         TEST(correct[3][0]),\
         TEST(correct[3][1]),\
         TEST(correct[3][2]),\
         TEST(correct[3][3]),\
         TEST(correct[3][4]));
-    fprintf(stderr,"|     Mergesort | %s  %s  %s  %s  %s       |\n",\
+    fprintf(stderr,"|     Mergesort | %-6s %-6s %-6s %-6s %-6s |\n",\
         TEST(correct[4][0]),\
         TEST(correct[4][1]),\
         TEST(correct[4][2]),\
@@ -110,17 +110,17 @@ int main()
     fprintf(stderr,"+---------------+------------------------------------+\n");
     fprintf(stderr,"|                      Time (s)                      |\n");
     fprintf(stderr,"+---------------+------------------------------------+\n");
-    fprintf(stderr,"|   List length |  1E1   1E2   1E3   1E4   1E5       |\n");
+    fprintf(stderr,"|   List length | 1E1    1E2    1E3    1E4    1E5    |\n");
     fprintf(stderr,"+---------------+------------------------------------+\n");
-    fprintf(stderr,"|   Bubble sort | %2.3f %2.3f %2.3f %2.3f %2.3f     |\n",\
+    fprintf(stderr,"|   Bubble sort | %-6.3f %-6.3f %-6.3f %-6.3f %-6.3f |\n",\
             times[0][0],times[0][1],times[0][2],times[0][3],times[0][4]);
-    fprintf(stderr,"|Selection sort | %2.3f %2.3f %2.3f %2.3f %2.3f     |\n",\
+    fprintf(stderr,"|Selection sort | %-6.3f %-6.3f %-6.3f %-6.3f %-6.3f |\n",\
             times[1][0],times[1][1],times[1][2],times[1][3],times[1][4]);
-    fprintf(stderr,"|Insertion sort | %2.3f %2.3f %2.3f %2.3f %2.3f     |\n",\
+    fprintf(stderr,"|Insertion sort | %-6.3f %-6.3f %-6.3f %-6.3f %-6.3f |\n",\
             times[2][0],times[2][1],times[2][2],times[2][3],times[2][4]);
-    fprintf(stderr,"|     Quicksort | %2.3f %2.3f %2.3f %2.3f %2.3f     |\n",\
+    fprintf(stderr,"|     Quicksort | %-6.3f %-6.3f %-6.3f %-6.3f %-6.3f |\n",\
             times[3][0],times[3][1],times[3][2],times[3][3],times[3][4]);
-    fprintf(stderr,"|     Mergesort | %2.3f %2.3f %2.3f %2.3f %2.3f     |\n",\
+    fprintf(stderr,"|     Mergesort | %-6.3f %-6.3f %-6.3f %-6.3f %-6.3f |\n",\
             times[4][0],times[4][1],times[4][2],times[4][3],times[4][4]);
     fprintf(stderr,"+---------------+------------------------------------+\n");
     

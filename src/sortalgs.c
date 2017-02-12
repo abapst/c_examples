@@ -54,6 +54,7 @@ void insertion_sort(list *src)
 
 void mergesort(list *src, list *dst)
 {
+    copy_list(src, dst);
     TopDownSplitMerge(src, 0, src->n, dst);
 }
 
