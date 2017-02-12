@@ -12,19 +12,22 @@ int pop_end(node_t *head);
 void delete_list(node_t *head);
 /************************/
 
-typedef struct node {
+typedef struct node
+{
   int val;
   struct node *next;
 } node_t;
 
-node_t *list_init() {
+node_t *list_init()
+{
   node_t *head = malloc(sizeof(node_t));
   head->val = 1;
   head->next = NULL;
   return head;
 }
 
-void print_list(node_t *head) {
+void print_list(node_t *head)
+{
   node_t *current = head;
 
   while (current != NULL) {
@@ -34,7 +37,8 @@ void print_list(node_t *head) {
   printf("\n");
 }
 
-void push_end(node_t *head, int val) {
+void push_end(node_t *head, int val)
+{
   node_t *current = head;
 
   /* Navigate to the end of the list */
@@ -48,7 +52,8 @@ void push_end(node_t *head, int val) {
   current->next->next = NULL;
 }
 
-void push_start(node_t ** head, int val) {
+void push_start(node_t ** head, int val)
+{
   node_t *new_node = malloc(sizeof(node_t));
   new_node->val = val;
 
@@ -58,7 +63,8 @@ void push_start(node_t ** head, int val) {
   *head = new_node; 
 }
 
-int pop_start(node_t ** head) {
+int pop_start(node_t ** head)
+{
   int retval = -1;
   node_t *next_node = NULL;
   
@@ -74,7 +80,8 @@ int pop_start(node_t ** head) {
   return retval;
 }
 
-int pop_end(node_t *head) {
+int pop_end(node_t *head)
+{
   node_t *current = head;
   int retval = -1;
 
@@ -96,7 +103,8 @@ int pop_end(node_t *head) {
   return retval;
 }
 
-void delete_list(node_t *head) {
+void delete_list(node_t *head)
+{
   node_t *current = head;
   node_t *tmp;
 
@@ -108,7 +116,8 @@ void delete_list(node_t *head) {
   free(current);
 }
 
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[])
+{
 
   node_t *list = list_init();
   int ii;

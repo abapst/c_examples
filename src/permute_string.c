@@ -7,7 +7,8 @@ void swap(char *str,int start, int end);
 /*************************/
 
 /* Prints permutations of string with duplicates allowed */
-void permute(char *str,int start, int end) {
+void permute(char *str,int start, int end)
+{
   int ii;
 
   if (start == end)
@@ -21,7 +22,8 @@ void permute(char *str,int start, int end) {
   }
 }
 
-void swap(char *str, int start, int end) {
+void swap(char *str, int start, int end)
+{
   char tmp;
   
   tmp = str[start];
@@ -29,7 +31,8 @@ void swap(char *str, int start, int end) {
   str[end] = tmp;
 }
 
-int main(int argc, char* argv[]) {
+int main(int argc, char* argv[])
+{
   
   char *str;
   int n;

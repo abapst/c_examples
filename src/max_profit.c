@@ -8,7 +8,8 @@ int array_min(int *prices,int start, int end);
 int max_profit(int *prices,int start, int end);
 /*************************/
 
-int array_max(int *prices,int start, int end) {
+int array_max(int *prices,int start, int end)
+{
 
   int ii;
   int max = 0;
@@ -23,7 +24,8 @@ int array_max(int *prices,int start, int end) {
   return max;
 }
 
-int array_min(int *prices,int start, int end) {
+int array_min(int *prices,int start, int end)
+{
 
   int ii;
   int min = MAXPRICE;
@@ -38,7 +40,8 @@ int array_min(int *prices,int start, int end) {
   return min;
 }
 
-int max_profit(int *prices, int start, int end) {
+int max_profit(int *prices, int start, int end)
+{
 
   int middle, bestLeft, bestRight, minLeft, maxRight;
   int best[3];
@@ -62,7 +65,8 @@ int max_profit(int *prices, int start, int end) {
   return array_max(best,0,3); 
 }
 
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[])
+{
 
   int prices[] = {5,4,3,9,14,2,1,12,0,4,7,23,42,18,17,52,1,3,3,8};
   int n = sizeof(prices)/sizeof(int);
