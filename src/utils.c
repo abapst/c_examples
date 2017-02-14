@@ -82,6 +82,44 @@ int compare_lists(list *src, list *dst)
 }
 
 /**************************************************
+ * Implicit heap functions
+ **************************************************/
+
+void heapify(list *src)
+{
+    size_t ii;
+
+    if (src->n == 1)
+        return;
+
+    for(ii = src->n/2; ii > 0; ii--) {
+        max_heapify(src,ii);
+    }
+}
+
+void max_heapify(list *src, size_t ii)
+{
+    size_t left = 2*ii+1;
+    size_t right = 2*ii+2;
+    size_t largest = ii;
+
+    /* percolate downwards until ii is largest in its subheap */
+    if (left <= src->n && src->data[left] > src->data[largest])
+        largest = left;
+    if (right <= src->n && src->data[right] > src->data[largest])
+        largest = right;
+    if (largest != ii) {
+        swap(src,ii,largest);
+        max_heapify(src, largest);
+    }
+}
+
+void sift_down(list *src, size_t start, size_t end)
+{
+    /* TODO */
+}
+
+/**************************************************
  * Returns the time in ms since the epoch
  **************************************************/
 double get_time_ms()

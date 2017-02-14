@@ -20,6 +20,10 @@ int compare_lists(list *src, list *dst);
 void delete_list(list *src);
 void print_list(list *src);
 
+void heapify(list *src);
+void max_heapify(list *src, size_t ii);
+void sift_down(list *src, size_t start, size_t end);
+
 double get_time_ms();
 /*************************/
 

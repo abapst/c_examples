@@ -1,6 +1,5 @@
 #include "sortalgs.h"
 
-
 void bubble_sort(list *src)
 {
     size_t n = src->n;
@@ -118,4 +117,17 @@ void TopDownMerge(list *src,int iStart, int iMiddle, int iEnd, list *dst)
       jj = jj+1;
     }
   } 
+}
+
+void heapsort(list *src)
+{
+    size_t end = src->n-1;
+
+    heapify(src);
+
+    while (end > 0) {
+        swap(src,0,end);
+        end--;
+        sift_down(src,0,end);
+    }
 }
