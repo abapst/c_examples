@@ -8,7 +8,7 @@ ONEEXEC=\
 	fibonacci\
 	linked_list\
 	max_profit\
-	permute_string
+	permute_string\
 
 MULTIEXEC=\
 	sorteval
@@ -16,14 +16,16 @@ MULTIEXEC=\
 OBJS=\
 	utils.o\
 	sortalgs.o\
+    heapify.o\
 
 DEPS=\
 	include/utils.h\
 	include/sortalgs.h\
+    include/heapify.h\
 
 all: $(ONEEXEC) $(MULTIEXEC)
 
-$(MULTIEXEC): sorteval.c $(OBJS)
+$(MULTIEXEC):  sorteval.c $(OBJS)
 	$(CC) $(CFLAGS) $(INC) $^ -o $@ $(LDFLAGS)
 
 %.o: %.c $(DEPS)

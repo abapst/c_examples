@@ -51,10 +51,13 @@ void insertion_sort(list *src)
     }
 }
 
-void mergesort(list *src, list *dst)
+void mergesort(list *src)
 {
+    list *dst = create_list(src->n);
     copy_list(src, dst);
     TopDownSplitMerge(src, 0, src->n, dst);
+    copy_list(dst, src);
+    delete_list(dst); 
 }
 
 void quicksort(list *src)

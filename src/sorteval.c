@@ -1,31 +1,63 @@
+/******************************************************************************
+ * sorteval.c
+ * Aleksander Bapst
+ * February 2017
+ *
+ * This benchmark runs six commonly taught sorting algorithms on a set of 
+ * randomly generated floating point lists of increasing length. The sorted 
+ * lists are evaluated using the associated truth lists and timed for 
+ * performance comparison. The test lists are separated in length by an order
+ * of magnitude and range from 10 - 100,000. All algorithms sort the lists
+ * in-place, with the exception of mergesort. Quicksort is implemented
+ * using the naive method of the pivot in last place.
+ * 
+ * Sorting algorithms |  Worst-case | Best-case | Space complexity
+ * -------------------|-------------|-----------|-------------------
+ *        Bubble Sort |    O(n^2)   |    O(n)   | O(1) aux
+ *     Insertion Sort |    O(n^2)   |    O(n)   | O(1) aux
+ *     Selection Sort |    O(n^2)   |   O(n^2)  | O(1) aux
+ *          Quicksort |    O(n^2)   |  O(nlogn) | O(n) aux (naive)
+ *          Mergesort |   O(nlogn)  |  O(nlogn) | O(n) aux
+ *           Heapsort |   O(nlogn)  |  O(nlogn) | O(1) aux
+ * -------------------|-------------|-----------|-------------------
+ */
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include <time.h>
 
 #include "utils.h"
 #include "sortalgs.h"
 
 #define BUFSIZE 256
-#define NLISTS 5
+#define NTESTS  5
+#define NALGS   6
 
 #define TEST(p)    ( p==1 ? "PASS" : "FAIL" )
 
 int main()
 {
-    int ii;
+    int ii, jj;
     char filename[BUFSIZE];
     double start;
     list *unsorted,*sorted,*truth;
-    double times[5][5];
-    int correct[5][5];
+    double times[NALGS][NTESTS];
+    int correct[NALGS][NTESTS];
+    sortAlgPtr sortalgs[NALGS];
 
-    for (ii = 0; ii < NLISTS; ii++) {
+    sortalgs[0] = &bubble_sort;
+    sortalgs[1] = &selection_sort;
+    sortalgs[2] = &insertion_sort;
+    sortalgs[3] = &quicksort;
+    sortalgs[4] = &mergesort;
+    sortalgs[5] = &heapsort;
+
+    for (ii = 0; ii < NTESTS; ii++) {
         /* Read the unsorted list */
         strcpy(filename,"data/1E");
         sprintf(filename + strlen(filename),"%d",ii+1);
-        printf("Testing list: %s\n",filename);
         strcat(filename,".list");
+        printf("Testing list: %s\n",filename);
         unsorted = read_list(filename);
 
         /* Read the ground truth list */
@@ -33,57 +65,15 @@ int main()
         sprintf(filename + strlen(filename),"%d",ii+1);
         strcat(filename,".truth");
         truth = read_list(filename);
-
         sorted = create_list(unsorted->n);
-        
-        /* Bubble sort */
-        printf("  bubble sort...");
-        fflush(stdout);
-        copy_list(unsorted, sorted);
-        start = get_time_ms(); 
-        bubble_sort(sorted);
-        times[0][ii] = get_time_ms() - start;
-        correct[0][ii] = !compare_lists(sorted,truth) ? 1 : 0;
-        printf("done\n");
-        
-        /* Selection sort */
-        printf("  selection sort...");
-        fflush(stdout);
-        copy_list(unsorted, sorted);
-        start = get_time_ms(); 
-        selection_sort(sorted);
-        times[1][ii] = get_time_ms() - start;
-        correct[1][ii] = !compare_lists(sorted,truth) ? 1 : 0;
-        printf("done\n");
-        
-        /* Insertion sort */
-        printf("  insertion sort...");
-        fflush(stdout);
-        copy_list(unsorted, sorted);
-        start = get_time_ms(); 
-        insertion_sort(sorted);
-        times[2][ii] = get_time_ms() - start;
-        correct[2][ii] = !compare_lists(sorted,truth) ? 1 : 0;
-        printf("done\n");
-        
-        /* Quicksort */
-        printf("  quicksort...");
-        fflush(stdout);
-        copy_list(unsorted, sorted);
-        start = get_time_ms(); 
-        quicksort(sorted);
-        times[3][ii] = get_time_ms() - start;
-        correct[3][ii] = !compare_lists(sorted,truth) ? 1 : 0;
-        printf("done\n");
 
-        /* Mergesort */
-        printf("  mergesort...");
-        fflush(stdout);
-        start = get_time_ms(); 
-        mergesort(unsorted, sorted);
-        times[4][ii] = get_time_ms() - start;
-        correct[4][ii] = !compare_lists(sorted,truth) ? 1 : 0;
-        printf("done\n");
+        for (jj = 0; jj < NALGS; jj++) {
+            copy_list(unsorted,sorted);
+            start = get_time_sec();
+            (*sortalgs[jj])(sorted);
+            times[jj][ii] = get_time_sec() - start;
+            correct[jj][ii] = !compare_lists(sorted,truth) ? 1 : 0;
+        }
     }
 
     printf("+----------------------------------------------------+\n");
@@ -121,6 +111,12 @@ int main()
         TEST(correct[4][2]),\
         TEST(correct[4][3]),\
         TEST(correct[4][4]));
+    printf("|      Heapsort | %-6s %-6s %-6s %-6s %-6s |\n",\
+        TEST(correct[5][0]),\
+        TEST(correct[5][1]),\
+        TEST(correct[5][2]),\
+        TEST(correct[5][3]),\
+        TEST(correct[5][4]));
     printf("+---------------+------------------------------------+\n");
     printf("|                      Time (s)                      |\n");
     printf("+---------------+------------------------------------+\n");
@@ -136,6 +132,8 @@ int main()
             times[3][0],times[3][1],times[3][2],times[3][3],times[3][4]);
     printf("|     Mergesort | %-6.3f %-6.3f %-6.3f %-6.3f %-6.3f |\n",\
             times[4][0],times[4][1],times[4][2],times[4][3],times[4][4]);
+    printf("|      Heapsort | %-6.3f %-6.3f %-6.3f %-6.3f %-6.3f |\n",\
+            times[5][0],times[5][1],times[5][2],times[5][3],times[5][4]);
     printf("+---------------+------------------------------------+\n");
     
     /* Cleanup */

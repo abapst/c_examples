@@ -24,7 +24,7 @@ void heapify(list *src);
 void max_heapify(list *src, size_t ii);
 void sift_down(list *src, size_t start, size_t end);
 
-double get_time_ms();
+double get_time_sec();
 /*************************/
 
 #endif
