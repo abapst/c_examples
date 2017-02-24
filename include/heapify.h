@@ -1,5 +1,5 @@
-#ifndef __HEAPIFY_H__
-#define __HEAPIFY_H__
+#ifndef HEAPIFY_H
+#define HEAPIFY_H
 
 #include "utils.h"
 

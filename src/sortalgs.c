@@ -23,8 +23,8 @@ void bubble_sort(list *src)
 
 void selection_sort(list *src)
 {
-    int ii,jj;
-    int iMin;
+    size_t ii,jj;
+    size_t iMin;
   
     for (jj=0; jj<src->n; jj++) {
       iMin = jj;

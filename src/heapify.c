@@ -12,15 +12,9 @@ void heapify(list *src)
     if (src->n == 1)
         return;
     
-    while (start >= 0) {
+    while (start != SIZE_MAX) {
         sift_down(src,start,end);
-
-        /* prevent infinite loop bug */
-        if (start == 0) {
-            return;
-        } else {
-            start--; 
-        }
+        start--;
     }
 }
 

@@ -1,5 +1,5 @@
-#ifndef __SORTALGS_H__
-#define __SORTALGS_H__
+#ifndef SORTALGS_H
+#define SORTALGS_H
 
 #include "utils.h"
 #include "heapify.h"

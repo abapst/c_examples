@@ -140,7 +140,7 @@ node_t *reverse_list(node_t *head)
     return current;
 }
 
-int main(int argc, char *argv[])
+int main()
 {
 
     node_t *list = list_init();

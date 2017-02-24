@@ -62,7 +62,7 @@ int max_profit(int *prices, int start, int end)
     return array_max(best,0,3); 
 }
 
-int main(int argc, char *argv[])
+int main()
 {
     int prices[] = {5,4,3,9,14,2,1,12,0,4,7,23,42,18,17,52,1,3,3,8};
     int n = sizeof(prices)/sizeof(int);

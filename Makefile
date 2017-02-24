@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-g -Wall -Wfatal-errors
+CFLAGS=-g -Wall -Werror -Wextra -Wfatal-errors -pedantic-errors
 LDFLAGS=
 INC=-I./include
 VPATH=./src

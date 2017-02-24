@@ -1,8 +1,9 @@
-#ifndef __UTILS_H__
-#define __UTILS_H__
+#ifndef UTILS_H
+#define UTILS_H
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdint.h>
 #include <time.h>
 #include <sys/time.h>
 
