@@ -2,36 +2,50 @@ CC=gcc
 CFLAGS=-g -Wall -Werror -Wextra -Wfatal-errors -pedantic-errors
 LDFLAGS=
 INC=-I./include
-VPATH=./src
+VPATH=src/
+OBJDIR=obj/
+BINDIR=bin/
 
-ONEEXEC=\
+SINGLEEXEC=\
 	fibonacci\
-	linked_list\
 	max_profit\
 	permute_string\
 
 MULTIEXEC=\
-	sorteval
+    sorteval\
+    list\
 
-OBJS=\
+OBJ=\
 	utils.o\
 	sortalgs.o\
     heapify.o\
+    list.o\
 
-DEPS=\
-	include/utils.h\
-	include/sortalgs.h\
-    include/heapify.h\
+SINGLEEXECS=$(addprefix $(BINDIR), $(SINGLEEXEC))
+MULTIEXECS=$(addprefix $(BINDIR), $(MULTIEXEC))
+OBJS=$(addprefix $(OBJDIR), $(OBJ))
+DEPS=$(wildcard include/*.h) Makefile
 
-all: $(ONEEXEC) $(MULTIEXEC)
+all: bin obj $(SINGLEEXECS) $(MULTIEXECS)
 
-$(MULTIEXEC):  sorteval.c $(OBJS)
+$(BINDIR)%: %.c
+	$(CC) $(CFLAGS) $^ -o $@
+
+$(BINDIR)sorteval: sorteval.c obj/utils.o obj/sortalgs.o obj/heapify.o
 	$(CC) $(CFLAGS) $(INC) $^ -o $@ $(LDFLAGS)
 
-%.o: %.c $(DEPS)
+$(BINDIR)list:  obj/list.o
+	$(CC) $(CFLAGS) $(INC) $^ -o $@ $(LDFLAGS)
+
+$(OBJDIR)%.o: %.c $(DEPS)
 	$(CC) $(CFLAGS) $(INC) -c $< -o $@
 
-.PHONY: clean
+obj:
+	mkdir -p obj
 
+bin:
+	mkdir -p bin
+
+.PHONY: clean
 clean:
-	rm -rf *.o core.* $(ONEEXEC) $(MULTIEXEC)
+	rm -rf *.o core.* bin/ obj/ $(OBJS) $(SINGLEEXECS) $(MULTIEXECS)

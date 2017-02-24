@@ -1,22 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/* Function declarations */
-typedef struct node node_t;
-node_t *list_init();
-void print_list(node_t *head);
-void push_end(node_t *head, int val);
-void push_start(node_t **head, int val);
-int pop_start(node_t **head);
-int pop_end(node_t **head);
-void delete_list(node_t **head);
-/************************/
+#include "list.h"
 
-typedef struct node
-{
-    int val;
-    struct node *next;
-} node_t;
 
 node_t *list_init()
 {
