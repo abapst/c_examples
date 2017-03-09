@@ -20,7 +20,7 @@ OBJ=\
 	utils.o\
 	sortalgs.o\
     heapify.o\
-    list.o\
+    linked_list.o\
     fileio.o\
 
 SINGLEEXECS=$(addprefix $(BINDIR), $(SINGLEEXEC))
@@ -39,10 +39,10 @@ $(BINDIR)%: %.c
 $(BINDIR)sorteval: sorteval.c obj/utils.o obj/sortalgs.o obj/heapify.o
 	$(CC) $(CFLAGS) $(INC) $^ -o $@ $(LDFLAGS)
 
-$(BINDIR)test_list: test_list.c obj/list.o
+$(BINDIR)test_list: test_list.c obj/linked_list.o
 	$(CC) $(CFLAGS) $(INC) $^ -o $@ $(LDFLAGS)
 
-$(BINDIR)test_fileio: test_fileio.c obj/fileio.o obj/list.o
+$(BINDIR)test_fileio: test_fileio.c obj/fileio.o obj/linked_list.o
 	$(CC) $(CFLAGS) $(INC) $^ -o $@ $(LDFLAGS)
 
 obj:

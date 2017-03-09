@@ -14,7 +14,7 @@ void collapse_list(node_t *head, struct strlist *items)
     } 
 }
 
-struct strlist *read_string_list(const char *filename)
+struct strlist *read_strlist(const char *filename)
 {
     FILE *fd = fopen(filename,"r");
     struct strlist *items = malloc(sizeof(struct strlist));
