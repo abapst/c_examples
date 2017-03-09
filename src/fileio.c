@@ -66,6 +66,7 @@ void delete_strlist(struct strlist *items)
 void print_strlist(struct strlist *items)
 {
     int ii;
+    printf("List length = %d\n",items->n);
     for (ii = 0; ii < items->n; ii++) {
         printf("%s\n",items->data[ii]);
     }
