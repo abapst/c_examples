@@ -13,13 +13,15 @@ SINGLEEXEC=\
 
 MULTIEXEC=\
     sorteval\
-    list\
+    test_fileio\
+    test_list\
 
 OBJ=\
 	utils.o\
 	sortalgs.o\
     heapify.o\
     list.o\
+    fileio.o\
 
 SINGLEEXECS=$(addprefix $(BINDIR), $(SINGLEEXEC))
 MULTIEXECS=$(addprefix $(BINDIR), $(MULTIEXEC))
@@ -28,17 +30,20 @@ DEPS=$(wildcard include/*.h) Makefile
 
 all: bin obj $(SINGLEEXECS) $(MULTIEXECS)
 
+$(OBJDIR)%.o: %.c $(DEPS)
+	$(CC) $(CFLAGS) $(INC) -c $< -o $@
+
 $(BINDIR)%: %.c
 	$(CC) $(CFLAGS) $^ -o $@
 
 $(BINDIR)sorteval: sorteval.c obj/utils.o obj/sortalgs.o obj/heapify.o
 	$(CC) $(CFLAGS) $(INC) $^ -o $@ $(LDFLAGS)
 
-$(BINDIR)list:  obj/list.o
+$(BINDIR)test_list: test_list.c obj/list.o
 	$(CC) $(CFLAGS) $(INC) $^ -o $@ $(LDFLAGS)
 
-$(OBJDIR)%.o: %.c $(DEPS)
-	$(CC) $(CFLAGS) $(INC) -c $< -o $@
+$(BINDIR)test_fileio: test_fileio.c obj/fileio.o obj/list.o
+	$(CC) $(CFLAGS) $(INC) $^ -o $@ $(LDFLAGS)
 
 obj:
 	mkdir -p obj

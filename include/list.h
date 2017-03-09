@@ -1,8 +1,6 @@
 #ifndef LIST_H
 #define LIST_H
 
-#define MAXLINE 2048
-
 typedef struct node
 {
     int id;
@@ -20,6 +18,7 @@ node_t *pop_start(node_t **head);
 node_t *pop_end(node_t **head);
 void delete_list(node_t **head);
 void delete_node(node_t *node);
+node_t *reverse_list(node_t *head);
 int list_length(node_t *head);
 /************************/
 
