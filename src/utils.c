@@ -6,7 +6,7 @@ list *read_list(const char *filename)
     size_t n;
     FILE *fd = fopen(filename,"r");
 
-    if(fd == NULL){
+    if(fd == NULL) {
         fprintf(stderr,"File %s not found!\n",filename);
         exit(-1);
     }
