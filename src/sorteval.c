@@ -19,7 +19,7 @@
  *          Quicksort |    O(n^2)   |  O(nlogn) | O(n) aux (naive)
  *          Mergesort |   O(nlogn)  |  O(nlogn) | O(n) aux
  *           Heapsort |   O(nlogn)  |  O(nlogn) | O(1) aux
- * -------------------|-------------|-----------|-------------------
+ * -----------------------------------------------------------------
  */
 
 #include <stdlib.h>
@@ -74,6 +74,11 @@ int main()
             times[jj][ii] = get_time_sec() - start;
             correct[jj][ii] = !compare_lists(sorted,truth) ? 1 : 0;
         }
+
+        /* Cleanup */
+        delete_list(unsorted);
+        delete_list(sorted);
+        delete_list(truth);
     }
 
     printf("+----------------------------------------------------+\n");
@@ -136,9 +141,5 @@ int main()
             times[5][0],times[5][1],times[5][2],times[5][3],times[5][4]);
     printf("+---------------+------------------------------------+\n");
     
-    /* Cleanup */
-    delete_list(unsorted);
-    delete_list(sorted);
-    delete_list(truth);
     return 0;
 }

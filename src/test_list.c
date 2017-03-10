@@ -23,7 +23,7 @@ int main()
     print_list(list);
 
     for (ii = 1; ii < 10; ii++) {
-        pop_end(&list);
+        delete_node(pop_end(&list));
         print_list(list);
     }
     delete_list(&list);

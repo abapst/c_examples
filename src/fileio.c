@@ -60,6 +60,7 @@ void delete_strlist(struct strlist *items)
     for (ii = 0; ii < items->n; ii++) {
         free(items->data[ii]);
     }
+    free(items->data);
     free(items);
 }
 
