@@ -4,7 +4,7 @@ An organized collection of useful and semi-useful tools and snippets implemented
 ## Installation
 
 Requirements:
-	- GCC >= 6
+  - GCC >= 6
 
 ```
 git clone https://github.com/abapst/c_utils.git
