@@ -1,4 +1,4 @@
-CC=gcc
+CC=/usr/bin/gcc-6
 CFLAGS=-g -Wall -Wextra -Wfatal-errors -pedantic-errors
 LDFLAGS=
 INC=-I./include
@@ -15,6 +15,7 @@ MULTIEXEC=\
     sorteval\
     test_fileio\
     test_list\
+    test_parse\
 
 OBJ=\
 	utils.o\
@@ -22,6 +23,7 @@ OBJ=\
     heapify.o\
     linked_list.o\
     fileio.o\
+    parse.o\
 
 SINGLEEXECS=$(addprefix $(BINDIR), $(SINGLEEXEC))
 MULTIEXECS=$(addprefix $(BINDIR), $(MULTIEXEC))
@@ -43,6 +45,9 @@ $(BINDIR)test_list: test_list.c obj/linked_list.o
 	$(CC) $(CFLAGS) $(INC) $^ -o $@ $(LDFLAGS)
 
 $(BINDIR)test_fileio: test_fileio.c obj/fileio.o obj/linked_list.o
+	$(CC) $(CFLAGS) $(INC) $^ -o $@ $(LDFLAGS)
+
+$(BINDIR)test_parse: test_parse.c obj/parse.o
 	$(CC) $(CFLAGS) $(INC) $^ -o $@ $(LDFLAGS)
 
 obj:

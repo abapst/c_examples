@@ -3,10 +3,13 @@ An organized collection of useful and semi-useful tools and snippets implemented
 
 ## Installation
 
-1. Install with the following commands.
-<pre>
-git clone https://github.com/abapst/c_utils
+Requirements:
+	- GCC >= 6
+
+```
+git clone https://github.com/abapst/c_utils.git
 cd c_examples
 make
-</pre>
+```
 
+If there are any C++ style errors, check the GCC variable in Makefile
