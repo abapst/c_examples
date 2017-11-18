@@ -28,12 +28,14 @@ list *read_list(const char *filename)
     return src;
 }
 
+
 void swap(list *src, int i1, int i2)
 {
     float tmp = src->data[i1];
     src->data[i1] = src->data[i2];
     src->data[i2] = tmp;
 }
+
 
 int copy_list(list *src, list *dst)
 {
@@ -47,6 +49,7 @@ int copy_list(list *src, list *dst)
     return 0;
 }
 
+
 list *create_list(size_t n)
 {
     list *src = (list *)malloc(sizeof(list));
@@ -56,11 +59,13 @@ list *create_list(size_t n)
     return src;
 }
 
+
 void delete_list(list *src)
 {
     free(src->data);
     free(src);
 }
+
 
 void print_list(list *src)
 {
@@ -69,6 +74,7 @@ void print_list(list *src)
     for (ii = 0; ii < src->n; ii++)
         printf("%f\n",src->data[ii]);
 }
+
 
 int compare_lists(list *src, list *dst)
 {
@@ -80,6 +86,7 @@ int compare_lists(list *src, list *dst)
     }   
     return 0;
 }
+
 
 /***************************************************
  * Returns the wall time in seconds since the epoch, 

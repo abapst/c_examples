@@ -2,7 +2,10 @@
 #define SORTALGS_H
 
 #include "utils.h"
-#include "heapify.h"
+
+#define PARENT(i)    ( (i-1) / 2 )
+#define LCHILD(i)    ( 2*i + 1 )
+#define RCHILD(i)    ( 2*i + 2 )
 
 typedef void (*sortAlgPtr)(list *src);
 
@@ -20,6 +23,7 @@ void TopDownSplitMerge(list *src, int iStart, int iEnd, list *dst);
 void TopDownMerge(list *src,int iStart, int iMiddle, int iEnd, list *dst);
 
 void heapsort(list *src);
-/*************************/
+void heapify(list *src);
+void sift_down(list *src, size_t start, size_t end);
 
-#endif
+#endif /* SORTALGS_H */

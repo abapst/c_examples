@@ -21,6 +21,7 @@ void bubble_sort(list *src)
     }
 }
 
+
 void selection_sort(list *src)
 {
     size_t ii,jj;
@@ -38,6 +39,7 @@ void selection_sort(list *src)
     }
 }
 
+
 void insertion_sort(list *src)
 {
     size_t ii,jj;
@@ -51,6 +53,7 @@ void insertion_sort(list *src)
     }
 }
 
+
 void mergesort(list *src)
 {
     list *dst = create_list(src->n);
@@ -60,10 +63,12 @@ void mergesort(list *src)
     delete_list(dst); 
 }
 
+
 void quicksort(list *src)
 {
     qsort_main(src,0,src->n-1);
 }
+
 
 void qsort_main(list *src, int lo, int hi)
 {
@@ -74,6 +79,7 @@ void qsort_main(list *src, int lo, int hi)
         qsort_main(src, p+1, hi); 
     }
 }
+
 
 int qsort_partition(list *src, int lo, int hi)
 {
@@ -91,6 +97,7 @@ int qsort_partition(list *src, int lo, int hi)
     return ii;
 }
 
+
 void TopDownSplitMerge(list *src, int iStart, int iEnd, list *dst)
 {
   int iMiddle;
@@ -104,6 +111,7 @@ void TopDownSplitMerge(list *src, int iStart, int iEnd, list *dst)
 
   TopDownMerge(src, iStart, iMiddle, iEnd, dst);
 }
+
 
 void TopDownMerge(list *src,int iStart, int iMiddle, int iEnd, list *dst)
 {
@@ -122,6 +130,7 @@ void TopDownMerge(list *src,int iStart, int iMiddle, int iEnd, list *dst)
   } 
 }
 
+
 void heapsort(list *src)
 {
     size_t end = src->n-1;
@@ -132,5 +141,45 @@ void heapsort(list *src)
         swap(src,0,end);
         end--;
         sift_down(src,0,end);
+    }
+}
+
+
+void heapify(list *src)
+{
+    size_t end = src->n-1;
+    size_t start = PARENT(end);
+
+    if (src->n == 1)
+        return;
+    
+    while (start != SIZE_MAX) {
+        sift_down(src,start,end);
+        start--;
+    }
+}
+
+
+void sift_down(list *src, size_t start, size_t end)
+{
+    size_t child, iswap, root = start;
+
+    while (LCHILD(root) <= end) {
+        child = LCHILD(root);
+        iswap = root; 
+
+        /* if left child is greater */
+        if (src->data[iswap] < src->data[child])
+            iswap = child;
+        /* if right child is greater */
+        if (child+1 <= end && src->data[iswap] < src->data[child+1])
+            iswap = child+1;
+        /* if root is largest, the heap property is satisfied */
+        if (iswap == root) {
+            return;
+        } else {
+            swap(src, root, iswap);
+            root = iswap;
+        }
     }
 }

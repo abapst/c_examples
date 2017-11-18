@@ -15,9 +15,13 @@ struct strlist {
     char **data;
 };
 
+
 struct strlist *read_strlist(const char *filename);
+
 void collapse_list(node_t *head, struct strlist *items);
+
 void delete_strlist(struct strlist *items);
+
 void print_strlist(struct strlist *items);
 
-#endif
+#endif /* FILEIO_H */

@@ -13,6 +13,7 @@ node_t *list_init()
     return head;
 }
 
+
 void print_list(node_t *head)
 {
     node_t *current = head;
@@ -24,21 +25,21 @@ void print_list(node_t *head)
     printf("\n");
 }
 
+
 void push_end(node_t *head, int id, void *data)
 {
     node_t *current = head;
 
-    /* Navigate to the end of the list */
     while(current->next != NULL) {
       current = current->next;
     }
 
-    /* Add a new item to the list */
     current->next = malloc(sizeof(node_t));
     current->next->next = NULL;
     current->next->data = data;
     current->next->id = id;
 }
+
 
 void push_start(node_t **head, int id, void *data)
 {
@@ -46,18 +47,16 @@ void push_start(node_t **head, int id, void *data)
     new_node->id = id;
     new_node->data = data;
 
-    /* We need to use a double pointer so that the head gets modified
-       inside the calling function */
     new_node->next = *head;
     *head = new_node; 
 }
+
 
 node_t *pop_start(node_t **head)
 {
     node_t *next_node = NULL;
     node_t *retval = NULL;
   
-    /* If the head has already been popped */
     if (*head == NULL) {
         return NULL;
     }
@@ -69,23 +68,21 @@ node_t *pop_start(node_t **head)
     return retval;
 }
 
+
 node_t *pop_end(node_t **head)
 {
     node_t *current = *head;
     node_t *retval = NULL;
 
-    /* If the head has already been popped */
     if (*head == NULL) {
         return NULL;
     }
 
-    /* If there is only one item in the list, remove it */
     if (current->next == NULL) {
         *head = NULL;
         return current;
     }
 
-    /* Traverse the list to the second-to-last */
     while(current->next->next != NULL) {
         current = current->next;
     }
@@ -95,11 +92,13 @@ node_t *pop_end(node_t **head)
     return retval;
 }
 
+
 void delete_node(node_t *node)
 {
-    free(node->data); // nop if NULL
+    free(node->data);
     free(node);
 }
+
 
 void delete_list(node_t **head)
 {
@@ -113,6 +112,7 @@ void delete_list(node_t **head)
     }
     *head = NULL;
 }
+
 
 node_t *reverse_list(node_t *head)
 {
@@ -129,6 +129,7 @@ node_t *reverse_list(node_t *head)
     current->next = prev;
     return current;
 }
+
 
 int list_length(node_t *head)
 {

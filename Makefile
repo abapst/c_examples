@@ -1,4 +1,4 @@
-CC=/usr/bin/gcc-6
+CC=/usr/bin/gcc
 CFLAGS=-g -Wall -Wextra -Wfatal-errors -pedantic-errors
 LDFLAGS=
 INC=-I./include
@@ -20,7 +20,6 @@ MULTIEXEC=\
 OBJ=\
 	utils.o\
 	sortalgs.o\
-    heapify.o\
     linked_list.o\
     fileio.o\
     parse.o\
@@ -38,7 +37,7 @@ $(OBJDIR)%.o: %.c $(DEPS)
 $(BINDIR)%: %.c
 	$(CC) $(CFLAGS) $^ -o $@
 
-$(BINDIR)sorteval: sorteval.c obj/utils.o obj/sortalgs.o obj/heapify.o
+$(BINDIR)sorteval: sorteval.c obj/utils.o obj/sortalgs.o
 	$(CC) $(CFLAGS) $(INC) $^ -o $@ $(LDFLAGS)
 
 $(BINDIR)test_list: test_list.c obj/linked_list.o

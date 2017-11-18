@@ -1,12 +1,14 @@
 #ifndef LINKED_LIST_H
 #define LINKED_LIST_H
 
+
 typedef struct node
 {
     int id;
     void *data;
     struct node *next;
 } node_t;
+
 
 /* Function declarations */
 typedef struct node node_t;
@@ -20,6 +22,5 @@ void delete_list(node_t **head);
 void delete_node(node_t *node);
 node_t *reverse_list(node_t *head);
 int list_length(node_t *head);
-/************************/
 
-#endif
+#endif /* LINKED_LIST_H */
