@@ -6,7 +6,11 @@
 
 int main(int argc, char **argv)
 {
-    (void)argc;
+    if (argc < 2) {
+        fprintf(stderr, "Usage: ./test_parse <string>\n");
+        return -1;
+    }
+
     char *filename = argv[1];
     char *path;
     char *file;
