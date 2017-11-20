@@ -48,7 +48,7 @@ void push_start(node_t **head, int id, void *data)
     new_node->data = data;
 
     new_node->next = *head;
-    *head = new_node; 
+    *head = new_node;
 }
 
 
@@ -56,7 +56,7 @@ node_t *pop_start(node_t **head)
 {
     node_t *next_node = NULL;
     node_t *retval = NULL;
-  
+
     if (*head == NULL) {
         return NULL;
     }

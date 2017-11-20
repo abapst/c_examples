@@ -1,5 +1,6 @@
 #include "fileio.h"
 
+
 void collapse_list(node_t *head, struct strlist *items)
 {
     int cnt = 0;
@@ -11,15 +12,13 @@ void collapse_list(node_t *head, struct strlist *items)
         prev = current;
         current = current->next;
         free(prev);
-    } 
+    }
 }
+
 
 struct strlist *read_strlist(const char *filename)
 {
     FILE *fd = fopen(filename,"r");
-    struct strlist *items = malloc(sizeof(struct strlist));
-    items->n = 0;
-    items->data = NULL;
 
     if (fd == NULL) {
         fprintf(stderr,"File %s not found!\n",filename);
@@ -31,11 +30,11 @@ struct strlist *read_strlist(const char *filename)
     node_t *list = list_init();
 
     /* build list */
-    while(fgets(buf,MAXLINE,fd) != NULL) {
-        REMOVEN(buf); 
+    while (fgets(buf,MAXLINE,fd) != NULL) {
+        REMOVEN(buf);
         char *buf2 = malloc(MAXLINE);
         strncpy(buf2,buf,MAXLINE);
-        if(cnt == 0) {
+        if (cnt == 0) {
             list->id = cnt;
             list->data = buf2;
             cnt++;
@@ -43,16 +42,24 @@ struct strlist *read_strlist(const char *filename)
             push_end(list,cnt++,buf2);
         }
     }
-    fclose(fd); 
+    fclose(fd);
     free(buf);
 
+    if (cnt == 0) {
+        fprintf(stderr,
+            "[read_strlist]: nothing to read in file %s\n", filename);
+        return NULL;
+    }
+
+    struct strlist *items = malloc(sizeof(struct strlist));
     items->n = cnt;
     items->data = malloc((items->n)*sizeof(char *));
 
     collapse_list(list,items);
-    
+
     return items;
 }
+
 
 void delete_strlist(struct strlist *items)
 {
@@ -63,6 +70,7 @@ void delete_strlist(struct strlist *items)
     free(items->data);
     free(items);
 }
+
 
 void print_strlist(struct strlist *items)
 {

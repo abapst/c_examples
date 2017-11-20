@@ -3,14 +3,14 @@
  * Aleksander Bapst
  * February 2017
  *
- * This benchmark runs six commonly taught sorting algorithms on a set of 
- * randomly generated floating point lists of increasing length. The sorted 
- * lists are evaluated using the associated truth lists and timed for 
+ * This benchmark runs six commonly taught sorting algorithms on a set of
+ * randomly generated floating point lists of increasing length. The sorted
+ * lists are evaluated using the associated truth lists and timed for
  * performance comparison. The test lists are separated in length by an order
  * of magnitude and range from 10 - 100,000. All algorithms sort the lists
  * in-place, with the exception of mergesort. Quicksort is implemented
  * using the naive method of the pivot in last place.
- * 
+ *
  * Sorting algorithms |  Worst-case | Best-case | Space complexity
  * -------------------|-------------|-----------|-------------------
  *        Bubble Sort |    O(n^2)   |    O(n)   | O(1) aux
@@ -29,11 +29,12 @@
 #include "utils.h"
 #include "sortalgs.h"
 
+
 #define BUFSIZE 256
 #define NTESTS  5
 #define NALGS   6
-
 #define TEST(p)    ( p==1 ? "PASS" : "FAIL" )
+
 
 int main()
 {
@@ -140,6 +141,6 @@ int main()
     printf("|      Heapsort | %-6.3f %-6.3f %-6.3f %-6.3f %-6.3f |\n",\
             times[5][0],times[5][1],times[5][2],times[5][3],times[5][4]);
     printf("+---------------+------------------------------------+\n");
-    
+
     return 0;
 }

@@ -1,5 +1,6 @@
 #include "sortalgs.h"
 
+
 void bubble_sort(list *src)
 {
     size_t n = src->n;
@@ -26,7 +27,7 @@ void selection_sort(list *src)
 {
     size_t ii,jj;
     size_t iMin;
-  
+
     for (jj=0; jj<src->n; jj++) {
       iMin = jj;
       for (ii=jj+1; ii<src->n; ii++) {
@@ -45,7 +46,7 @@ void insertion_sort(list *src)
     size_t ii,jj;
 
     for (ii=1; ii<src->n; ii++) {
-        jj = ii; 
+        jj = ii;
         while (jj > 0 && src->data[jj] < src->data[jj-1]) {
             swap(src, jj-1, jj);
             jj--;
@@ -60,7 +61,7 @@ void mergesort(list *src)
     copy_list(src, dst);
     TopDownSplitMerge(src, 0, src->n, dst);
     copy_list(dst, src);
-    delete_list(dst); 
+    delete_list(dst);
 }
 
 
@@ -76,7 +77,7 @@ void qsort_main(list *src, int lo, int hi)
     if (lo < hi) {
         p = qsort_partition(src, lo, hi);
         qsort_main(src, lo, p-1);
-        qsort_main(src, p+1, hi); 
+        qsort_main(src, p+1, hi);
     }
 }
 
@@ -104,8 +105,10 @@ void TopDownSplitMerge(list *src, int iStart, int iEnd, list *dst)
   if (iEnd - iStart < 2) return;
 
   iMiddle = (iEnd + iStart) / 2;
-  /* Alternating the merge direction with each level of recursion is
-     a trick to avoid the copy-back step */
+  /*
+   * Alternating the merge direction with each level of recursion is
+   * a trick to avoid the copy-back step
+   */
   TopDownSplitMerge(dst, iStart, iMiddle, src);
   TopDownSplitMerge(dst, iMiddle, iEnd, src);
 
@@ -127,7 +130,7 @@ void TopDownMerge(list *src,int iStart, int iMiddle, int iEnd, list *dst)
       dst->data[kk] = src->data[jj];
       jj = jj+1;
     }
-  } 
+  }
 }
 
 
@@ -152,7 +155,7 @@ void heapify(list *src)
 
     if (src->n == 1)
         return;
-    
+
     while (start != SIZE_MAX) {
         sift_down(src,start,end);
         start--;
@@ -166,7 +169,7 @@ void sift_down(list *src, size_t start, size_t end)
 
     while (LCHILD(root) <= end) {
         child = LCHILD(root);
-        iswap = root; 
+        iswap = root;
 
         /* if left child is greater */
         if (src->data[iswap] < src->data[child])

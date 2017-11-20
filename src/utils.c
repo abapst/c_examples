@@ -16,7 +16,7 @@ list *read_list(const char *filename)
 
     /* Allocate list */
     list *src = create_list(n);
-    
+
     float *step = src->data;
 
     /* Read list into array */
@@ -83,13 +83,13 @@ int compare_lists(list *src, list *dst)
 
     for (ii = 0; ii < src->n; ii++) {
         if (src->data[ii] != dst->data[ii]) return -1;
-    }   
+    }
     return 0;
 }
 
 
 /***************************************************
- * Returns the wall time in seconds since the epoch, 
+ * Returns the wall time in seconds since the epoch,
  * with precision to the us
  **************************************************/
 double get_time_sec()

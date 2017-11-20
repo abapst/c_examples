@@ -7,8 +7,10 @@
 
 #include "linked_list.h"
 
+
 #define MAXLINE 2048
 #define REMOVEN(s) (s[strcspn(s,"\n")] = 0) // remove newline from strings
+
 
 struct strlist {
     int n;

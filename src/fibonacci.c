@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
 int fibonacci(int n)
 {
     if (n == 1 || n == 2)
@@ -10,13 +11,18 @@ int fibonacci(int n)
         return fibonacci(n-1) + fibonacci(n-2);
 }
 
+
 int main(int argc, char *argv[])
 {
     int ii,n;
 
-    if (argc == 2)
+    if (argc == 2) {
         n = atoi(argv[1]);
-  
+    } else {
+        fprintf(stderr,"Usage: ./fibonacci <int>\n");
+        return -1;
+    }
+
     for (ii = 1; ii <= n; ii++) {
         printf("%d ",fibonacci(ii));
     }

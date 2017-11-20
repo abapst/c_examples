@@ -73,6 +73,7 @@ void split_filename(char *filename, char **path, char **file, char **ext)
     }
 }
 
+
 char *build_filename(char *path, char *file, char *ext)
 {
     size_t lpath = (path == NULL) ? 0 : strlen(path);

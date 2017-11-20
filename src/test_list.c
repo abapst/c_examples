@@ -8,7 +8,7 @@ int main()
     node_t *list = list_init();
     void *dummy = NULL;
     int ii;
-  
+
     list->id = 0;
     print_list(list);
 
@@ -27,6 +27,6 @@ int main()
         print_list(list);
     }
     delete_list(&list);
-  
+
     return 0;
 }
