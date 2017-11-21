@@ -1,5 +1,5 @@
 CC=/usr/bin/gcc
-CFLAGS=-g -Wall -Wextra -Wfatal-errors -pedantic-errors
+CFLAGS=-g -Wall -Wextra -Wfatal-errors -pedantic-errors -std=c99
 LDFLAGS=
 INC=-I./include
 VPATH=src/

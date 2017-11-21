@@ -57,7 +57,7 @@ void split_filename(char *filename, char **path, char **file, char **ext)
 
         *file = malloc(current-filestart);
         strncpy(*file, filestart, current-filestart-1);
-        (*file)[current-filestart] = 0; // null-terminate
+        (*file)[current-filestart-1] = 0; // null-terminate
         extstart = current;
 
         if (*next == 0) {
@@ -68,7 +68,7 @@ void split_filename(char *filename, char **path, char **file, char **ext)
         strncpy(*ext, extstart, end-extstart);
     } else {
         *file = malloc(end-filestart);
-        strncpy(*file, filestart, end-filestart);
+        strncpy(*file, filestart, end-filestart+1);
         (*file)[end-filestart] = 0; // null-terminate
     }
 }
@@ -94,6 +94,7 @@ char *build_filename(char *path, char *file, char *ext)
         }
         filename[lpath + lfile + lext + 2] = 0;
         return filename;
-    } else
+    } else {
         return NULL;
+    }
 }

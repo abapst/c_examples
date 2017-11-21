@@ -9,9 +9,7 @@ typedef struct node
     struct node *next;
 } node_t;
 
-
 /* Function declarations */
-typedef struct node node_t;
 node_t *list_init();
 void print_list(node_t *head);
 void push_end(node_t *head, int id, void *data);
