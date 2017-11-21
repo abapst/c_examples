@@ -8,7 +8,7 @@ Requirements:
 
 ```
 git clone https://github.com/abapst/c_utils.git
-cd c_examples
+cd c_utils
 make
 ```
 
