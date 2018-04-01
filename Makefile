@@ -16,6 +16,7 @@ MULTIEXEC=\
     test_fileio\
     test_list\
     test_parse\
+	test_sort\
 
 OBJ=\
 	utils.o\
@@ -40,13 +41,16 @@ $(BINDIR)%: %.c
 $(BINDIR)sorteval: sorteval.c obj/utils.o obj/sortalgs.o
 	$(CC) $(CFLAGS) $(INC) $^ -o $@ $(LDFLAGS)
 
-$(BINDIR)test_list: test_list.c obj/linked_list.o
+$(BINDIR)test_list: test/test_list.c obj/linked_list.o
 	$(CC) $(CFLAGS) $(INC) $^ -o $@ $(LDFLAGS)
 
-$(BINDIR)test_fileio: test_fileio.c obj/fileio.o obj/linked_list.o
+$(BINDIR)test_fileio: test/test_fileio.c obj/fileio.o obj/linked_list.o
 	$(CC) $(CFLAGS) $(INC) $^ -o $@ $(LDFLAGS)
 
-$(BINDIR)test_parse: test_parse.c obj/parse.o
+$(BINDIR)test_parse: test/test_parse.c obj/parse.o
+	$(CC) $(CFLAGS) $(INC) $^ -o $@ $(LDFLAGS)
+
+$(BINDIR)test_sort: test/test_sort.c obj/utils.o obj/sortalgs.o
 	$(CC) $(CFLAGS) $(INC) $^ -o $@ $(LDFLAGS)
 
 obj:
