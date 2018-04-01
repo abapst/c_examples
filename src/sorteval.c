@@ -5,11 +5,11 @@
  *
  * This benchmark runs six commonly taught sorting algorithms on a set of
  * randomly generated floating point lists of increasing length. The sorted
- * lists are evaluated using the associated truth lists and timed for
- * performance comparison. The test lists are separated in length by an order
- * of magnitude and range from 10 - 100,000. All algorithms sort the lists
- * in-place, with the exception of mergesort. Quicksort is implemented
- * using the naive method of the pivot in last place.
+ * lists are checked for correctness and timed for performance comparison.
+ * The test lists are separated in length by an order of magnitude and range
+ * from 10 - 100,000. All algorithms sort the lists in-place, with the exception
+ * of mergesort. Quicksort is implemented using the naive method of the pivot
+ * in last place.
  *
  * Sorting algorithms |  Worst-case | Best-case | Space complexity
  * -------------------|-------------|-----------|-------------------
@@ -41,7 +41,7 @@ int main()
     int ii, jj;
     char filename[BUFSIZE];
     double start;
-    list *unsorted,*sorted,*truth;
+    list *unsorted,*sorted;
     double times[NALGS][NTESTS];
     int correct[NALGS][NTESTS];
     sortAlgPtr sortalgs[NALGS];
@@ -61,11 +61,6 @@ int main()
         printf("Testing list: %s\n",filename);
         unsorted = read_list(filename);
 
-        /* Read the ground truth list */
-        strcpy(filename,"data/1E");
-        sprintf(filename + strlen(filename),"%d",ii+1);
-        strcat(filename,".truth");
-        truth = read_list(filename);
         sorted = create_list(unsorted->n);
 
         for (jj = 0; jj < NALGS; jj++) {
@@ -73,13 +68,12 @@ int main()
             start = get_time_sec();
             (*sortalgs[jj])(sorted);
             times[jj][ii] = get_time_sec() - start;
-            correct[jj][ii] = !compare_lists(sorted,truth) ? 1 : 0;
+            correct[jj][ii] = !check_list_sorted(sorted) ? 1 : 0;
         }
 
         /* Cleanup */
         delete_list(unsorted);
         delete_list(sorted);
-        delete_list(truth);
     }
 
     printf("+----------------------------------------------------+\n");

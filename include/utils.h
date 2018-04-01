@@ -18,6 +18,7 @@ list *create_list(size_t n);
 void swap(list *src, int i1, int i2);
 int copy_list(list *src, list *dst);
 int compare_lists(list *src, list *dst);
+int check_list_sorted(list *src);
 void delete_list(list *src);
 void print_list(list *src);
 

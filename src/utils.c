@@ -87,6 +87,16 @@ int compare_lists(list *src, list *dst)
     return 0;
 }
 
+int check_list_sorted(list *src)
+{
+    size_t ii;
+    for (ii = 1; ii < src->n; ii++) {
+        if (src->data[ii] < src->data[ii-1]) {
+            return -1;
+        }
+    }
+    return 0;
+}
 
 /***************************************************
  * Returns the wall time in seconds since the epoch,
